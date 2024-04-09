@@ -1,30 +1,32 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, status
 from schemas.users import UserSignUp
 from controllers.users import UserController
 
-users = APIRouter()
+users = APIRouter(
+    prefix="/users",
+)
 
 
-@users.get("/users/", tags=["users"])
+@users.get("/")
 async def read_users():
     return [{"username": "Rick"}, {"username": "Morty"}]
 
-@users.get("/users/me", tags=["users"])
+@users.get("/me")
 async def read_my_user():
     return {"username": "Rick"}
 
-@users.post("/users/", tags=["users"])
+@users.post("/", status_code=status.HTTP_201_CREATED)
 async def create_user(payload: UserSignUp):
     controller = UserController()
     payload = payload.model_dump()
     new_user = controller.create_user(payload)
     return new_user
-    
 
-@users.patch("/users/{id}", tags=["users"])
+
+@users.patch("/{id}")
 async def update_user(id):
     return {"username": "Rick"}
 
-@users.delete("/users/", tags=["users"])
+@users.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user():
-    return ''
+    pass

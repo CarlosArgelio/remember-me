@@ -1,20 +1,22 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, status
 
-users = APIRouter()
+auth = APIRouter(
+    prefix='/auth'
+)
 
 
-@users.post("/auth/sign-in", tags=["users"])
+@auth.post("/sign-in")
 async def sign_in():
     return {'login': 'success'}
 
-@users.post("/auth/sign-up", tags=["users"])
-async def sign_in():
+@auth.post("/sign-up", status_code=status.HTTP_201_CREATED)
+async def sign_up():
     return {'register': 'success'}
 
-@users.post("/auth/forgot-password", tags=["users"])
-async def sign_in():
+@auth.post("/forgot-password")
+async def forgot_pasword():
     return {'login': 'success'}
 
-@users.post("/auth/change-password", tags=["users"])
-async def sign_in():
+@auth.post("/change-password")
+async def change_password():
     return {'login': 'success'}

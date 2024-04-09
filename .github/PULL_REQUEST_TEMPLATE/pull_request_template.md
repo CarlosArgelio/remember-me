@@ -1,7 +1,7 @@
 # Title: Add endpoint for creating users
 
 ## Description:
-This pull request adds a new endpoint to the API that allows users to be created. 
+This pull request adds a new endpoint to the API that allows users to be created.
 
 ## Why:
 Currently, there is no way to create users through the API. This endpoint fills that need.
