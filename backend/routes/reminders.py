@@ -20,7 +20,6 @@ async def create_reminders():
 @reminders.patch("/{id}")
 async def remindersreminder():
     return [{"username": "Rick"}, {"username": "Morty"}]
-
 @reminders.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_reminder():
     return [{"username": "Rick"}, {"username": "Morty"}]
