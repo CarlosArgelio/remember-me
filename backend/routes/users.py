@@ -21,7 +21,7 @@ async def create_user(payload: UserSignUp):
     payload = payload.model_dump()
     new_user = controller.create_user(payload)
     return new_user
-    
+
 
 @users.patch("/{id}")
 async def update_user(id):
