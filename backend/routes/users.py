@@ -1,4 +1,6 @@
 from fastapi import APIRouter
+from schemas.users import UserSignUp
+from controllers.users import UserController
 
 users = APIRouter()
 
@@ -12,8 +14,12 @@ async def read_my_user():
     return {"username": "Rick"}
 
 @users.post("/users/", tags=["users"])
-async def create_user():
-    return {"username": "Rick"}
+async def create_user(payload: UserSignUp):
+    controller = UserController()
+    payload = payload.model_dump()
+    new_user = controller.create_user(payload)
+    return new_user
+    
 
 @users.patch("/users/{id}", tags=["users"])
 async def update_user(id):
